@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>it.acconsulting</groupId>
+    <artifactId>ZbUdpServerMod0.3</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+       <project.build.scriptSourceDirectory>.\src\main\resource\launcher</project.build.scriptSourceDirectory>
+        <project.build.propertyDirectory>.\src\main\resource</project.build.propertyDirectory>
+        <project.build.rootDirectory>.\src\main\</project.build.rootDirectory>
+    </properties>
+    <dependencies>
+        <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>5.1.22</version>
+        </dependency>
+        <!-- http://mvnrepository.com/artifact/org.bouncycastle/bcprov-ext-jdk15on -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-ext-jdk15on</artifactId>
+            <version>1.47</version>
+        </dependency>
+        <!-- http://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>1.47</version>
+        </dependency>
+        <!-- http://mvnrepository.com/artifact/commons-net/commons-net -->
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>3.3</version>
+        </dependency>
+                <!-- connection pool-->
+        <dependency>
+          <groupId>net.snaq</groupId>
+          <artifactId>dbpool</artifactId>
+          <version>5.1</version>
+        </dependency>
+        
+        <!-- Kafka producer -->
+         <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>0.10.0.0</version>
+        </dependency>
+        
+        <!-- google resource per il producer-->
+         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>19.0</version>
+        </dependency>
+        
+        <!-- richiesto dalle librerie di kafka -->
+        <!-- http://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+          <!-- richiesto dalle librerie di kafka-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+        <dependency>
+    	<groupId>com.google.code.gson</groupId>
+    	<artifactId>gson</artifactId>
+    	<version>2.6.2</version>
+	</dependency>
+
+        <!-- KAFKA POOL -->
+        <dependency>
+			<groupId>com.netflix.curator</groupId>
+			<artifactId>curator-framework</artifactId>
+			<version>1.0.1</version>
+			<exclusions>
+				<exclusion>
+					<groupId>log4j</groupId>
+					<artifactId>log4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency> 
+                <dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+                <!-- TODO: Utilizzo Compressione Messaggi-->     
+                <!--                   
+                <dependency>
+                    <groupId>org.xerial.snappy</groupId>
+                    <artifactId>snappy-java</artifactId>
+                    <version>1.1.2.6</version>
+                </dependency>
+                -->
+        
+        <!-- dependency SOLO PER mover ZB_TIMover_ISA_DWH-->
+        <!-- http://mvnrepository.com/artifact/org.apache.commons/commons-vfs2 -->
+       <!--     <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-vfs2</artifactId>
+                <version>2.0</version>
+            </dependency>
+        
+            <dependency>
+                <groupId>com.jcraft</groupId>
+                <artifactId>jsch</artifactId>
+                <version>0.1.53</version>
+            </dependency>
+        -->
+
+        
+        
+        
+        
+        
+
+    </dependencies>
+        <build>
+		
+                <plugins>
+                   <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.source}</target>
+				</configuration>
+			</plugin>
+
+			<!-- Make this jar executable -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+				  <!-- 
+				  <excludes>
+					<exclude>**/log4j.properties</exclude>
+				  </excludes> -->
+                                  
+				  <archive>
+					<manifest>
+						<!-- Jar file entry point -->
+						<mainClass>zb_udp_server.ZB_UDP_Server</mainClass>
+					</manifest>
+				  </archive>
+				</configuration>
+			</plugin> 
+                        
+                        
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-assembly-plugin</artifactId>
+                            <version>2.5.1</version>
+                            <configuration>
+                                <finalName>ZbUdpServerMod</finalName>                   
+                                <!-- Configures the used assembly descriptor -->
+                                <descriptors>
+                                    <descriptor>./src/main/assembly/assembly.xml</descriptor>
+                                </descriptors>
+                            </configuration>
+                        </plugin>
+                    
+                </plugins>
+    </build>
+</project>

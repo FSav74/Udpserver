@@ -1,0 +1,2 @@
+{"IDRec":"202722464","IDBlackBox":"2","Record"="A","Stato"="0","Time"="2016-06-07 18:49:34"}
+{"IDRec":"202722465","IDBlackBox":"3","Record"="A","Stato"="0","Time"="2016-06-07 18:49:34"}

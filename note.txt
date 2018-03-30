@@ -1,0 +1,17 @@
+ZbUdpServerMod0.3 - FINALE - rilasciata in pre-produzione
+
+creato a partire dal ZbUdpServerMod
+
+Non vi sono le modifiche del ZbUdpServerMod0.2 per il paralello con produzione
+
+E' presente l'implementazione del thread pool per le richieste udp che arrivano. 
+
+2)
+E' stata aggiunta una classe ZB_UDP_ComunicationNew:
+ELIMINATO il thread pool di kafka producer per la fault tolerance 
+
+
+3) Controllati tutti i comandi non rela time 
+   -catch exception
+   -utilizzo connessione jdbc dal pool
+   -chiusura corretta risorse
